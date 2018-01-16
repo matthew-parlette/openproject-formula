@@ -3,6 +3,7 @@
 
 {% from "template/map.jinja" import template with context %}
 
-template-pkg:
-  pkg.installed:
-    - name: {{ template.pkg }}
+template-image:
+  dockerng.image_present:
+    - name: {{ template.image }}:{{ template.branch }}
+    - force: True
