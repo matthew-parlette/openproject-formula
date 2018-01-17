@@ -4,6 +4,7 @@ openproject:
   image: openproject/community
   name: openproject
   branch: latest
+  port: 8080
   path:
     db: /var/openproject/database
     data: /var/openproject/data
