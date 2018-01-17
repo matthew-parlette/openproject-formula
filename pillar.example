@@ -1,6 +1,19 @@
-template:
-  filename: /path/on/host.ext
-  directory: /path/on/host
-  port: 3000
+openproject:
+  path:
+    db: /var/openproject/database
+    data: /var/openproject/data
+  port: 8080
   environment:
-    # key: value
+    SECRET_KEY_BASE:
+    DATABASE_URL: postgres://user:password@host:5432/dbname?pool=10&encoding=unicode&timeout=5000&reconnect=true
+    EMAIL_DELIVERY_METHOD: smtp
+    SMTP_ADDRESS: smtp.example.net
+    SMTP_PORT: 587
+    SMTP_DOMAIN: example.net
+    SMTP_AUTHENTICATION: plain
+    SMTP_USER_NAME: user
+    SMTP_PASSWORD: password
+    SMTP_ENABLE_STARTTLS_AUTO: true
+    CACHE_MEMCACHE_SERVER: memcache.host
+    CACHE_NAMESPACE: openproject
+    # omniauth_direct_login_provider: google

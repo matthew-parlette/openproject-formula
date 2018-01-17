@@ -1,32 +1,33 @@
 # -*- coding: utf-8 -*-
 # vim: ft=sls
 
-{% from "template/map.jinja" import template with context %}
+{% from "openproject/map.jinja" import openproject with context %}
 
 include:
-  - template.install
+  - openproject.install
 
-template-file:
-  file.touch:
-    - name: {{ template.filename }}
-
-template-dir:
+openproject-db:
   file.directory:
-    - name: {{ template.directory }}
+    - name: {{ openproject.path['db'] }}
 
-template-container:
+openproject-data:
+  file.directory:
+    - name: {{ openproject.path['data'] }}
+
+openproject-container:
   dockerng.running:
-    - name: {{ template.name }}
-    - image: {{ template.image }}:{{ template.branch }}
+    - name: {{ openproject.name }}
+    - image: {{ openproject.image }}:{{ openproject.branch }}
     - binds:
-      - {{ template.directory }}:/path/on/container:rw
+      - {{ openproject.path['db'] }}:/var/lib/postgresql/9.4/main:rw
+      - {{ openproject.path['data'] }}:/var/db/openproject:rw
     - port_bindings:
-      - {{ template.port }}:3000
-    {%- if template['environment'] is defined %}
+      - {{ openproject.port }}:80
+    {%- if openproject['environment'] is defined %}
     - environment:
-      {%- for env, value in template.environment.items() %}
+      {%- for env, value in openproject.environment.items() %}
       - {{ env }}: {{ value|yaml_squote }}
       {%- endfor %}
     {%- endif %}
     - require:
-      - dockerng: template-image
+      - dockerng: openproject-image

@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
-template:
-  image: username/template
-  name: template
+openproject:
+  image: openproject/community
+  name: openproject
   branch: latest
+  path:
+    db: /var/openproject/database
+    data: /var/openproject/data
+  cache:
+    namespace: openproject

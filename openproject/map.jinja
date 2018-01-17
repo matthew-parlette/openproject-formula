@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: ft=jinja
 
-{% import_yaml 'template/defaults.yaml' as default_settings %}
+{% import_yaml 'openproject/defaults.yaml' as default_settings %}
 
 {% set os_family_map = salt['grains.filter_by']({
         'Debian': {},
@@ -10,13 +10,13 @@
         'RedHat': {},
   }
   , grain="os_family"
-  , merge=salt['pillar.get']('template:lookup'))
+  , merge=salt['pillar.get']('openproject:lookup'))
 %}
-{% do default_settings.template.update(os_family_map) %}
+{% do default_settings.openproject.update(os_family_map) %}
 
-{% set template = salt['pillar.get'](
-        'template',
-        default=default_settings.template,
+{% set openproject = salt['pillar.get'](
+        'openproject',
+        default=default_settings.openproject,
         merge=True
     )
 %}

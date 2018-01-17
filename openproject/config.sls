@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: ft=sls
 
-{% from "template/map.jinja" import template with context %}
+{% from "openproject/map.jinja" import openproject with context %}
 
-template-config:
+openproject-config:
   test.nop

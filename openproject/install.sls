@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # vim: ft=sls
 
-{% from "template/map.jinja" import template with context %}
+{% from "openproject/map.jinja" import openproject with context %}
 
-template-image:
+openproject-image:
   dockerng.image_present:
-    - name: {{ template.image }}:{{ template.branch }}
+    - name: {{ openproject.image }}:{{ openproject.branch }}
     - force: True
