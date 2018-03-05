@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+openproject:
+  image: openproject/community
+  name: openproject
+  branch: latest
+  port: 8080
+  path:
+    db: /var/openproject/database
+    data: /var/openproject/data
+  cache:
+    namespace: openproject
